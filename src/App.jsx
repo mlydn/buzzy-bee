@@ -1,33 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import header from './assets/header.jpeg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <img src={header} />
       </div>
-      <h1>Vite + React</h1>
+      <h1>Buzzy Bee Bookkeeping</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+          I am an experienced part-qualified accountant (CAT – Certified Accounts Technician) with a demonstrated history of working for small businesses and within Investment Banking. My strengths include helping to start up any financial system set-ups, improvements or automation of new or current processes, business administration, financial forecasting, financial control, management accounting, and performance analysis.
+        </p>
+        <p>
+          I offer a full remote bookkeeping and business administration service using Moneybird. I have a range of different pricing and service options to suit all sizes of business. If you need a couple of hours or up to a couple of days - I can help! Please get in touch with your enquiry.
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
