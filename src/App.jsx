@@ -11,11 +11,21 @@ function App() {
       <h1>Buzzy Bee Bookkeeping</h1>
       <div className="card">
         <p>
-          I am an experienced part-qualified accountant (CAT – Certified Accounts Technician) with a demonstrated history of working for small businesses and within Investment Banking. My strengths include helping to start up any financial system set-ups, improvements or automation of new or current processes, business administration, financial forecasting, financial control, management accounting, and performance analysis.
+          At Buzzy Bee Book-Keeping, we specialize in providing meticulous and reliable bookkeeping services tailored to meet the unique needs of small to medium-sized businesses.
         </p>
+        <h2>Our Services Include:</h2>
         <p>
-          I offer a full remote bookkeeping and business administration service using Moneybird. I have a range of different pricing and service options to suit all sizes of business. If you need a couple of hours or up to a couple of days - I can help! Please get in touch with your enquiry.
+          <ul>
+            <li><strong>Comprehensive Bookkeeping:</strong> From recording daily transactions to managing ledgers, we ensure your financial records are always up-to-date and accurate</li>
+            <li><strong>Financial Reporting:</strong> We provide detailed financial statements that give you a clear view of your business's financial health</li>
+            <li><strong>Accounts Payable & Receivable:</strong> Efficient management of your payable and receivables to optimize cash flow</li>
+            <li><strong>Bank Reconciliation:</strong> Regular reconciliation of your bank statements to prevent discrepancies and ensure accuracy</li>
+            <li><strong>Tax Preparation & Filing:</strong> Timely and precise tax preparation to keep you compliant and avoid penalties</li>
+          </ul>
         </p>
+      </div>
+      <div>
+      <a target="_blank" href="https://icons8.com/icon/1UXA0mGrf9CT/bee">Bee</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
       </div>
     </>
   )
