@@ -29,6 +29,14 @@ li#accounting {
   margin: 0;
 }
 
+#book, #health-graph, #ledger, #bank-euro, #accounting  {
+  padding-left: 30px;
+}
+
+.description {
+  display: block;
+}
+
 body {
   background-color: #FFE63B;
   color: black;
