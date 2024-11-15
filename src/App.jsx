@@ -1,6 +1,29 @@
 import header from './assets/header.jpeg'
 import './App.css'
-import {useCollapse} from 'react-collapsed';
+import {useCollapse} from 'react-collapsed'
+
+function Section(props) {
+  const config = {
+      defaultExpanded: props.defaultExpanded || false,
+      collapsedHeight: props.collapsedHeight || 0
+  };
+  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse(config);
+return (
+  <div className="collapsible">
+      <div className="header" {...getToggleProps()}>
+          <div className="title"><h3>{props.title}</h3></div>
+          <div className="icon">
+              <i className={'fas fa-chevron-circle-' + (isExpanded ? 'up' : 'down')}></i>
+          </div>
+      </div>
+      <div {...getCollapseProps()}>
+          <div className="content">
+              {props.children}
+          </div>
+      </div>
+  </div>
+  );
+}
 
 function App() {
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
@@ -40,19 +63,33 @@ function App() {
           </ul>
         </p>
       </div>
-      <div className="collapsible card">
-        <div className="header" {...getToggleProps()}>
-            <h2>About {isExpanded ? <img height="20" width="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAz0lEQVR4nO3YywrCMBBG4fOE1oWDC/vsCiq+RAuVQLpzvDVtJvAfCJSki/nIqgWllFJKKaUqtwfuwDU/N5kBAzDlNQI9jSOmFjHmIJrCHF8gBmcvvdvMTYzACTg4Z31LiLnwGPsCER5jPyDCYuwPRDiMLUCEwVgBRHWMFURUw9gKiM0xtiJiM4xtgFgdYxsi5opjaiCKY2oiimEiIBZjuoDfDkdnpjSr2y0Y4h0m/dBwewREeJg0q1uXpedPV1epDrjkGXe1h1FKKaWUUrTVE5bz7NyN3sYLAAAAAElFTkSuQmCC" alt="collapse" /> : <img height="20" width="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA3klEQVR4nO3YSwrCMBRG4eMOVQwZ6OoVQfGxgQqVQgsiSe0zucX/QGdJuR+hgxSUUkoppZTqmQPuwBlYY68NcAGegI8tWgE3oKyfom1xhnw9UzPfo5452PVjoSWM/0KU9azRtoENuTE+MlM1a2u7wMYXcCDPN1sEZtl3fYEFjBuLsIBxUyFyYtzUiBwYNxciJWZ2RApMMsScmOSIOTDZEFNisiOmwJhBjMGYQwzBmEX0wZhHdMEsBvHr7mDtjjP4ZBZzEl0xi0LEMItENFW/lE7A0ejvJaWUUkop9U+9AdnJ7S7GX9jsAAAAAElFTkSuQmCC" alt="expand"></img>}</h2>
-        </div>
-        <div {...getCollapseProps()}>
-            <div className="content">
-              <p>I am an experienced part-qualified accountant (CAT - Certified Accounts Technician) with e demonstrated history of working for small businesses and within Investment Banking.  My strengths include helping to start up any financial system set-ups, improvements or automation of new or current processes, business administration, financial forecasting, financial control, management accounting, and performance analysis.</p>
-              <p>I offer a full remote bookkeeping and business administration service using Moneybird.  I have a range of different pricing and service options to suit all sizes of business.  If you need a couple of hours or up to a couple of days - I can help!</p>
-              <p>Please get in touch with your enquiry.</p>
-            </div>
-        </div>
-    </div>
-      <div>
+      <div className="sections">
+        <Section title="About" defaultExpanded="false">
+          <div className="content">
+            <p>I am an experienced part-qualified accountant (CAT - Certified Accounts Technician) with a demonstrated history of working for small businesses and within Investment Banking. My strengths include helping to start up any financial system set-ups, improvements or automation of new or current processes, business administration, financial forecasting, financial control, management accounting, and performance analysis.</p>
+            <p>I offer a full remote bookkeeping and business administration service using Moneybird. I have a range of different pricing and service options to suit all sizes of business. If you need a couple of hours or up to a couple of days - I can help!</p>
+            <p>Please get in touch with your enquiry.</p>
+          </div>
+        </Section>
+        <Section title="Bookkeeping for Freelancers, ZZP & Entrepreuneurs">
+          <div className="content">
+            <p>Being self-employed has a lot of benefits, but can also require hard work. Drawbacks are unpredictable income, long working hours, no sick pay, finding enough work to pay the bills and making a profit. Besides this, self-employment comes with a set of rules for your administration.</p>
+            <p>Becoming successful means you need to make smart choices. Administrative hours cost money, since you can&apos;t work when you are doing them. Hiring us to handle your bookkeeping and taxes will not only give you ease of mind. It will actually save you money. See it as an investment on your company and not as an expense.</p>
+          </div>
+        </Section>
+        <Section title="Digital Bookkeeping">
+          <div className="content">
+            <p>I work with the online software Moneybird and all you need is a smartphone, tablet or laptop. When you get a receipt or purchase invoice, simply upload it to your personal environment. You can use the same software to send your invoices and connect it to your bank account. It will register & match your payments allowing you to do the things you love most within your business. This gives you detailed insights as to which invoices are paid or overdue, as well as a dashboard of your financial results.</p>
+          </div>
+        </Section>
+        <Section title="Taxes & Personal Service Included">
+          <div className="content">
+            <p>Preparation and filing of your tax returns are included in the price, this shall save you time on both yout BTW and Income Tax Return. An advantage to this is that you don&apos;t have to research which benefits or exemptions you are entitled to.</p>
+            <p>A high level of personal service & advice is also included. Because your administration shall be handled I can then give you personal advice for your business, your expenses and your revenue streams if I see opportunities in doing so.</p>
+          </div>
+        </Section>
+      </div>
+      <div id="footer">
         Icons by <a target="_blank" href="https://icons8.com">Icons8</a>
       </div>
     </>

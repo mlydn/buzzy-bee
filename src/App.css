@@ -49,9 +49,27 @@ body {
 }
 
 .collapsible .content {
-    padding: 6px;
+  padding: 6px;
+  font-size: 14px;
 }
 .collapsible .header {
-    padding: 6px;
-    cursor: pointer;
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid rgb(155, 32, 32);
+}
+.collapsible .header .title {
+  font-weight: 400;
+}
+.sections label {
+  display: block;
+  padding-bottom: 4px;
+}
+.sections {
+  text-align: left;
+}
+
+#footer {
+  padding: 4em;
 }
