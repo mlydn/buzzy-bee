@@ -30,7 +30,7 @@ function App() {
   return (
     <>
       <div id="header">
-        <img src={header} />
+        <img src={header} className='responsive'/>
       </div>
       <h1>Buzzy Bee Bookkeeping</h1>
       <div className="card">
