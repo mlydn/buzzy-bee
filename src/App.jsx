@@ -2,6 +2,7 @@
 import { useCollapse } from 'react-collapsed'
 import bee from './assets/bee-extracted.png'
 import header from './assets/header-new.jpeg'
+import moneybirdExpert from './assets/aP-Gr7pReVYa3tfl_Moneybird-Expert-Standaard.svg'
 import './App.css'
 
 const serviceCards = [
@@ -263,6 +264,15 @@ function App() {
             Useful starting points: your business size, current software, monthly admin
             workload, and whether you need ongoing bookkeeping or one-off support.
           </p>
+          <a
+            className="expert-badge"
+            href="https://www.moneybird.nl/experts/buzzy-bee-book-keeping/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={moneybirdExpert} alt="Moneybird Expert profile badge" />
+            <span>View the Moneybird expert profile</span>
+          </a>
         </div>
       </section>
     </main>
