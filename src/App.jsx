@@ -24,7 +24,7 @@ const serviceCards = [
 
 const audienceCards = [
   'Freelancers and self-employed professionals who need a dependable admin rhythm.',
-  'ZZP and small business owners who want better visibility into income, costs, and cash flow.',
+  'Small business owners who want better visibility into income, costs, and cash flow.',
   'Growing businesses that need cleaner processes, stronger controls, or a better software setup.',
 ]
 
