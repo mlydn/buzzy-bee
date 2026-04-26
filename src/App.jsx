@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useCollapse } from 'react-collapsed'
 import bee from './assets/bee-extracted.png'
-import header from './assets/header.jpeg'
+import header from './assets/header-new.jpeg'
 import './App.css'
 
 const serviceCards = [
