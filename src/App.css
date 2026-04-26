@@ -238,6 +238,7 @@
 .service-grid,
 .workflow-grid,
 .about-grid,
+.location-grid,
 .section--split {
   display: grid;
   gap: 1.3rem;
@@ -319,6 +320,31 @@
 
 .workflow-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.location-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.location-card {
+  padding: 1.6rem;
+  border: 1px solid rgba(40, 32, 26, 0.1);
+  border-radius: 1.6rem;
+  background:
+    linear-gradient(180deg, rgba(255, 252, 244, 0.96), rgba(255, 248, 232, 0.88));
+  box-shadow: 0 20px 48px rgba(77, 53, 32, 0.08);
+}
+
+.location-card h3 {
+  margin: 0 0 0.75rem;
+  color: var(--ink-strong);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  line-height: 1.05;
+}
+
+.location-card p {
+  color: var(--ink-soft);
 }
 
 .workflow-card {
@@ -437,6 +463,7 @@
   .service-grid,
   .workflow-grid,
   .about-grid,
+  .location-grid,
   .section--split {
     grid-template-columns: 1fr;
   }

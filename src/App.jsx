@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useEffect } from 'react'
 import { useCollapse } from 'react-collapsed'
 import bee from './assets/bee-extracted.png'
 import header from './assets/header-new.jpeg'
@@ -71,6 +72,44 @@ function Disclosure({ eyebrow, title, children, defaultExpanded = false }) {
 }
 
 function App() {
+  useEffect(() => {
+    const siteUrl = 'https://buzzybeebookkeeping.nl/'
+    const canonical = document.querySelector('link[rel="canonical"]') || document.createElement('link')
+    canonical.setAttribute('rel', 'canonical')
+    canonical.setAttribute('href', siteUrl)
+    if (!canonical.parentNode) {
+      document.head.appendChild(canonical)
+    }
+
+    const schema = {
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      name: 'Buzzy Bee Bookkeeping',
+      url: siteUrl,
+      image: 'https://buzzybeebookkeeping.nl/src/assets/bee-extracted.png',
+      description:
+        'Bookkeeping, tax preparation, and business administration support for small businesses across the Netherlands, based in Amsterdam.',
+      areaServed: ['Netherlands'],
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Amsterdam',
+        addressCountry: 'NL',
+      },
+      serviceType: ['Bookkeeping', 'Tax preparation', 'Business administration'],
+      knowsAbout: ['Moneybird', 'Remote bookkeeping', 'Freelancer administration'],
+      sameAs: ['https://www.moneybird.nl/experts/buzzy-bee-book-keeping/'],
+    }
+
+    const schemaTag =
+      document.getElementById('local-business-schema') || document.createElement('script')
+    schemaTag.id = 'local-business-schema'
+    schemaTag.setAttribute('type', 'application/ld+json')
+    schemaTag.textContent = JSON.stringify(schema)
+    if (!schemaTag.parentNode) {
+      document.head.appendChild(schemaTag)
+    }
+  }, [])
+
   return (
     <main className="page-shell">
       <section className="hero">
@@ -81,12 +120,12 @@ function App() {
               <img src={bee} alt="" />
               <span>Buzzy Bee Bookkeeping</span>
             </div>
-            <p className="eyebrow">Remote bookkeeping for modern small businesses</p>
+            <p className="eyebrow">Based in Amsterdam, available across the Netherlands</p>
             <h1>Clear books, calmer admin, and financial support that keeps up with your business.</h1>
             <p className="hero__lede">
-              Buzzy Bee Bookkeeping supports freelancers, ZZP businesses, and growing
-              companies with reliable bookkeeping, tax preparation, and practical financial
-              guidance.
+              Buzzy Bee Bookkeeping supports freelancers, small businesses, and growing
+              companies with reliable bookkeeping services across the Netherlands, plus
+              remote tax preparation and practical financial guidance from an Amsterdam-based practice.
             </p>
             <div className="hero__actions">
               <a className="button button--primary" href="#contact">
@@ -218,6 +257,34 @@ function App() {
         </div>
       </section>
 
+      <section className="section section--location">
+        <div className="section-heading">
+          <p className="eyebrow">Service Area</p>
+          <h2>Bookkeeping support across the Netherlands, with the business based in Amsterdam.</h2>
+          <p>
+            Buzzy Bee Bookkeeping works with freelancers, ZZP businesses, and small
+            business owners throughout the Netherlands, using a fully remote setup that
+            keeps support flexible, responsive, and easy to manage from anywhere.
+          </p>
+        </div>
+        <div className="location-grid">
+          <article className="location-card">
+            <h3>Based in Amsterdam</h3>
+            <p>
+              Buzzy Bee Bookkeeping is based in Amsterdam and supports businesses that
+              want clear records, responsive communication, and practical financial admin support.
+            </p>
+          </article>
+          <article className="location-card">
+            <h3>Available across the Netherlands</h3>
+            <p>
+              Remote bookkeeping and business administration support is available
+              nationwide, using practical digital workflows built around Moneybird.
+            </p>
+          </article>
+        </div>
+      </section>
+
       <section className="section section--faq">
         <div className="section-heading">
           <p className="eyebrow">Details</p>
@@ -246,6 +313,13 @@ function App() {
               Tax preparation and filing are included, alongside practical advice on
               expenses, revenue, and day-to-day business administration when opportunities
               or risks are visible in the numbers.
+            </p>
+          </Disclosure>
+          <Disclosure eyebrow="Amsterdam and nationwide" title="Do you support businesses across the Netherlands?">
+            <p>
+              Yes. Buzzy Bee Bookkeeping is based in Amsterdam and supports freelancers
+              and small businesses across the Netherlands, with remote processes that make
+              ongoing bookkeeping straightforward and accessible.
             </p>
           </Disclosure>
         </div>
