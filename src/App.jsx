@@ -1,98 +1,271 @@
+/* eslint-disable react/prop-types */
+import { useCollapse } from 'react-collapsed'
+import bee from './assets/bee.png'
 import header from './assets/header.jpeg'
 import './App.css'
-import {useCollapse} from 'react-collapsed'
 
-function Section(props) {
-  const config = {
-      defaultExpanded: props.defaultExpanded || false,
-      collapsedHeight: props.collapsedHeight || 0
-  };
-  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse(config);
-return (
-  <div className="collapsible">
-      <div className="header" {...getToggleProps()}>
-          <div className="title"><h3>{props.title}</h3></div>
-          <div className="icon">
-              <i className={'fas fa-chevron-circle-' + (isExpanded ? 'up' : 'down')}></i>
-          </div>
-      </div>
+const serviceCards = [
+  {
+    title: 'Bookkeeping that stays current',
+    description:
+      'Daily transactions, ledgers, reconciliations, and clean records handled with consistency so nothing piles up in the background.',
+  },
+  {
+    title: 'Reporting with useful detail',
+    description:
+      'Clear financial statements and performance visibility that make it easier to understand what your business is doing month to month.',
+  },
+  {
+    title: 'Tax and filing support',
+    description:
+      'Preparation and filing support built into the service so deadlines, obligations, and available reliefs are managed properly.',
+  },
+]
+
+const audienceCards = [
+  'Freelancers and self-employed professionals who need a dependable admin rhythm.',
+  'ZZP and small business owners who want better visibility into income, costs, and cash flow.',
+  'Growing businesses that need cleaner processes, stronger controls, or a better software setup.',
+]
+
+const workflowSteps = [
+  {
+    title: 'Set up the right system',
+    description:
+      'Financial processes are reviewed, simplified, and built around practical day-to-day use.',
+  },
+  {
+    title: 'Keep records moving',
+    description:
+      'Receipts, purchase invoices, bank activity, and sales records are kept up to date in Moneybird.',
+  },
+  {
+    title: 'Review and advise',
+    description:
+      'Results are monitored so issues, opportunities, and next actions can be surfaced early.',
+  },
+]
+
+function Disclosure({ eyebrow, title, children, defaultExpanded = false }) {
+  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse({
+    defaultExpanded,
+  })
+
+  return (
+    <article className="disclosure">
+      <button className="disclosure__trigger" type="button" {...getToggleProps()}>
+        <span>
+          <span className="eyebrow">{eyebrow}</span>
+          <span className="disclosure__title">{title}</span>
+        </span>
+        <span className="disclosure__icon" aria-hidden="true">
+          {isExpanded ? '−' : '+'}
+        </span>
+      </button>
       <div {...getCollapseProps()}>
-          <div className="content">
-              {props.children}
-          </div>
+        <div className="disclosure__content">{children}</div>
       </div>
-  </div>
-  );
+    </article>
+  )
 }
 
 function App() {
-  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
   return (
-    <>
-      <div id="header">
-        <img src={header} className='responsive'/>
-      </div>
-      <h1>Buzzy Bee Bookkeeping</h1>
-      <div className="card">
-        <p>
-          At Buzzy Bee Book-Keeping, we specialize in providing meticulous and reliable bookkeeping services tailored to meet the unique needs of small to medium-sized businesses.
-        </p>
-        <h2>Our Services Include:</h2>
-        <p>
-          <ul>
-            <li id="book">
-              <strong>Comprehensive Bookkeeping:</strong>
-              <span className="description">From recording daily transactions to managing ledgers, we ensure your financial records are always up-to-date and accurate</span>
-            </li>
-            <li id="health-graph">
-              <strong>Financial Reporting:</strong>
-              <span className="description">We provide detailed financial statements that give you a clear view of your business&apos;s financial health</span>
-            </li>
-            <li id="ledger">
-              <strong>Accounts Payable & Receivable:</strong>
-              <span className="description">Efficient management of your payable and receivables to optimize cash flow</span>
-              </li>
-            <li id="bank-euro">
-              <strong>Bank Reconciliation:</strong>
-              <span className="description">Regular reconciliation of your bank statements to prevent discrepancies and ensure accuracy</span>
-            </li>
-            <li id="accounting">
-              <strong>Tax Preparation & Filing:</strong>
-              <span className="description">Timely and precise tax preparation to keep you compliant and avoid penalties</span>
-              </li>
+    <main className="page-shell">
+      <section className="hero">
+        <div className="hero__backdrop" aria-hidden="true" />
+        <div className="hero__content">
+          <div className="hero__copy">
+            <div className="brand-mark">
+              <img src={bee} alt="" />
+              <span>Buzzy Bee Bookkeeping</span>
+            </div>
+            <p className="eyebrow">Remote bookkeeping for modern small businesses</p>
+            <h1>Clear books, calmer admin, and financial support that keeps up with your business.</h1>
+            <p className="hero__lede">
+              Buzzy Bee Bookkeeping supports freelancers, ZZP businesses, and growing
+              companies with reliable bookkeeping, tax preparation, and practical financial
+              guidance.
+            </p>
+            <div className="hero__actions">
+              <a className="button button--primary" href="#contact">
+                Start an enquiry
+              </a>
+              <a className="button button--secondary" href="#services">
+                Explore services
+              </a>
+            </div>
+            <dl className="hero__stats">
+              <div>
+                <dt>Focused on</dt>
+                <dd>Small businesses</dd>
+              </div>
+              <div>
+                <dt>Working style</dt>
+                <dd>Fully remote</dd>
+              </div>
+              <div>
+                <dt>Software</dt>
+                <dd>Moneybird</dd>
+              </div>
+            </dl>
+          </div>
+          <div className="hero__visual">
+            <div className="hero__image-frame">
+              <img src={header} alt="Buzzy Bee Bookkeeping workspace overview" />
+            </div>
+            <div className="hero__note">
+              <strong>Practical support, not vague reporting.</strong>
+              <p>
+                Systems, bookkeeping, filing, and business administration aligned around
+                what owners actually need to run day to day.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--services" id="services">
+        <div className="section-heading">
+          <p className="eyebrow">Services</p>
+          <h2>Core financial support without the usual friction.</h2>
+          <p>
+            The service is built for business owners who need accurate books, responsive
+            support, and fewer admin tasks competing with revenue-generating work.
+          </p>
+        </div>
+        <div className="service-grid">
+          {serviceCards.map((card) => (
+            <article className="service-card" key={card.title}>
+              <h3>{card.title}</h3>
+              <p>{card.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section section--split">
+        <div className="panel panel--accent">
+          <p className="eyebrow">Who this helps</p>
+          <h2>Designed for owners who need structure without adding overhead.</h2>
+          <ul className="check-list">
+            {audienceCards.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
-        </p>
-      </div>
-      <div className="sections">
-        <Section title="About" defaultExpanded="false">
-          <div className="content">
-            <p>I am an experienced part-qualified accountant (CAT - Certified Accounts Technician) with a demonstrated history of working for small businesses and within Investment Banking. My strengths include helping to start up any financial system set-ups, improvements or automation of new or current processes, business administration, financial forecasting, financial control, management accounting, and performance analysis.</p>
-            <p>I offer a full remote bookkeeping and business administration service using Moneybird. I have a range of different pricing and service options to suit all sizes of business. If you need a couple of hours or up to a couple of days - I can help!</p>
-            <p>Please get in touch with your enquiry.</p>
+        </div>
+        <div className="panel">
+          <p className="eyebrow">What changes</p>
+          <h2>More visibility, fewer loose ends.</h2>
+          <p>
+            Outsourcing bookkeeping should do more than move admin off your desk. It
+            should give you a better system, cleaner reporting, and more confidence in
+            the numbers you rely on.
+          </p>
+          <p>
+            That includes support with setup, process improvements, forecasting, controls,
+            and performance analysis when those are relevant to the stage of your business.
+          </p>
+        </div>
+      </section>
+
+      <section className="section section--workflow">
+        <div className="section-heading">
+          <p className="eyebrow">Process</p>
+          <h2>A simple workflow that keeps administration moving.</h2>
+        </div>
+        <div className="workflow-grid">
+          {workflowSteps.map((step, index) => (
+            <article className="workflow-card" key={step.title}>
+              <span className="workflow-card__index">0{index + 1}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section section--about">
+        <div className="section-heading">
+          <p className="eyebrow">About</p>
+          <h2>Experienced support across bookkeeping, systems, and business administration.</h2>
+        </div>
+        <div className="about-grid">
+          <div className="about-copy">
+            <p>
+              Buzzy Bee Bookkeeping is led by a part-qualified accountant with Certified
+              Accounts Technician training and experience supporting small businesses as
+              well as work within investment banking environments.
+            </p>
+            <p>
+              Strengths include setting up financial systems, improving current processes,
+              supporting automation, management accounting, forecasting, financial control,
+              and performance analysis.
+            </p>
           </div>
-        </Section>
-        <Section title="Bookkeeping for Freelancers, ZZP & Entrepreuneurs">
-          <div className="content">
-            <p>Being self-employed has a lot of benefits, but can also require hard work. Drawbacks are unpredictable income, long working hours, no sick pay, finding enough work to pay the bills and making a profit. Besides this, self-employment comes with a set of rules for your administration.</p>
-            <p>Becoming successful means you need to make smart choices. Administrative hours cost money, since you can&apos;t work when you are doing them. Hiring us to handle your bookkeeping and taxes will not only give you ease of mind. It will actually save you money. See it as an investment on your company and not as an expense.</p>
+          <div className="about-copy">
+            <p>
+              The service is fully remote and built around Moneybird, making it easy to
+              upload receipts, manage invoices, connect bank activity, and stay on top of
+              paid or overdue balances from a phone, tablet, or laptop.
+            </p>
+            <p>
+              Support can scale from a few hours to a few days depending on what the
+              business needs.
+            </p>
           </div>
-        </Section>
-        <Section title="Digital Bookkeeping">
-          <div className="content">
-            <p>I work with the online software Moneybird and all you need is a smartphone, tablet or laptop. When you get a receipt or purchase invoice, simply upload it to your personal environment. You can use the same software to send your invoices and connect it to your bank account. It will register & match your payments allowing you to do the things you love most within your business. This gives you detailed insights as to which invoices are paid or overdue, as well as a dashboard of your financial results.</p>
-          </div>
-        </Section>
-        <Section title="Taxes & Personal Service Included">
-          <div className="content">
-            <p>Preparation and filing of your tax returns are included in the price, this shall save you time on both yout BTW and Income Tax Return. An advantage to this is that you don&apos;t have to research which benefits or exemptions you are entitled to.</p>
-            <p>A high level of personal service & advice is also included. Because your administration shall be handled I can then give you personal advice for your business, your expenses and your revenue streams if I see opportunities in doing so.</p>
-          </div>
-        </Section>
-      </div>
-      <div id="footer">
-        Icons by <a target="_blank" href="https://icons8.com">Icons8</a>
-      </div>
-    </>
+        </div>
+      </section>
+
+      <section className="section section--faq">
+        <div className="section-heading">
+          <p className="eyebrow">Details</p>
+          <h2>What working together can cover.</h2>
+        </div>
+        <div className="disclosure-list">
+          <Disclosure
+            eyebrow="Freelancers and ZZP"
+            title="Bookkeeping support for self-employed businesses"
+            defaultExpanded
+          >
+            <p>
+              Self-employment offers flexibility, but the administration side can quickly
+              take time away from client work. Reliable bookkeeping and tax support reduce
+              that burden and help protect margins.
+            </p>
+          </Disclosure>
+          <Disclosure eyebrow="Digital bookkeeping" title="A software setup that stays accessible">
+            <p>
+              Moneybird keeps invoices, receipts, payment matching, and financial insight
+              in one place so records can stay current without creating extra admin loops.
+            </p>
+          </Disclosure>
+          <Disclosure eyebrow="Tax and advice" title="Filing support with a personal service">
+            <p>
+              Tax preparation and filing are included, alongside practical advice on
+              expenses, revenue, and day-to-day business administration when opportunities
+              or risks are visible in the numbers.
+            </p>
+          </Disclosure>
+        </div>
+      </section>
+
+      <section className="section section--contact" id="contact">
+        <div className="contact-card">
+          <p className="eyebrow">Contact</p>
+          <h2>Have an enquiry about your bookkeeping or admin setup?</h2>
+          <p>
+            Share a few details about your business, your current process, and where you
+            need support. Buzzy Bee Bookkeeping can then recommend the right level of
+            service.
+          </p>
+          <p className="contact-card__prompt">
+            Useful starting points: your business size, current software, monthly admin
+            workload, and whether you need ongoing bookkeeping or one-off support.
+          </p>
+        </div>
+      </section>
+    </main>
   )
 }
 
